@@ -1,17 +1,16 @@
 pipeline {
     options { timestamps() }
 
-    agent none
+    agent any
+
     stages {
         stage('Check scm') {
-            agent any
             steps {
                 checkout scm
             }
         }
 
         stage('Build') {
-            agent any
             steps {
                 echo "Building ...${BUILD_NUMBER}"
                 echo "Build completed"
@@ -19,17 +18,11 @@ pipeline {
         }
 
         stage('Test') {
-            agent {
-                docker {
-                    image 'alpine'
-                    args '-u="root"'
-                }
-            }
             steps {
-                sh 'apk add --update python3 py-pip'
-                sh 'pip install Flask'
-                sh 'pip install unittest-xml-reporting'
-                sh 'python3 testprogram.py'
+                sh 'python3 --version || python --version'
+                sh 'pip3 install Flask || pip install Flask'
+                sh 'pip3 install unittest-xml-reporting || pip install unittest-xml-reporting'
+                sh 'python3 testprogram.py || python testprogram.py'
             }
             post {
                 always {
