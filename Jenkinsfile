@@ -20,9 +20,9 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'python3 --version || python --version'
-                sh 'pip3 install Flask || pip install Flask'
-                sh 'pip3 install unittest-xml-reporting || pip install unittest-xml-reporting'
-                sh 'python3 testprogram.py || python testprogram.py'
+                sh 'pip3 install --break-system-packages Flask'
+                sh 'pip3 install --break-system-packages unittest-xml-reporting'
+                sh 'python3 testprogram.py'
             }
             post {
                 always {
