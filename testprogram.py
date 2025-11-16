@@ -1,6 +1,7 @@
 import unittest
 import json
 import os
+import xmlrunner
 from app import app, load_data, save_data, PawnItem
 
 class TestPawnshopApp(unittest.TestCase):
@@ -94,4 +95,5 @@ class TestPawnshopApp(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    runner = xmlrunner.XMLTestRunner(output='test-reports')
+    unittest.main(testRunner=runner)
