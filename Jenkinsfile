@@ -19,9 +19,9 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'python3 --version || python --version'
-                sh 'pip3 install --break-system-packages Flask'
-                sh 'pip3 install --break-system-packages unittest-xml-reporting'
+                sh 'python3 --version'
+                sh 'python3 -c "import flask" 2>/dev/null || pip3 install --break-system-packages Flask'
+                sh 'python3 -c "import xmlrunner" 2>/dev/null || pip3 install --break-system-packages unittest-xml-reporting'
                 sh 'python3 testprogram.py'
             }
             post {
