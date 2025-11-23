@@ -38,9 +38,6 @@ pipeline {
         }
 
         stage('Build and Push Docker Image') {
-            when {
-                branch 'main'
-            }
             steps {
                 script {
                     def imageName = "dmytroshcherban/jenkins-python:${BUILD_NUMBER}"
